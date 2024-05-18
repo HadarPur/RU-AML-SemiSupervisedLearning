@@ -23,7 +23,9 @@ Following data generation, samples for each class in both views are concatenated
 Finally, the dataset undergoes shuffling to randomize the order of samples within each class, ensuring uniform distribution and eliminating potential biases in subsequent analyses or model training. This data generation
 process results in two views of the dataset, each containing samples with distinct features and class labels, while keeping the two sets of variables independent given the class label.
 
-<TODO:ADD FIG>
+<p align="center">
+<img src="https://github.com/HadarPur/RU-AML-SemiSupervisedLearning/blob/main/figs/fig1.png" alt="drawing" width="800"/>
+</p>
 
 #### Conditional Independence Across Views in Dataset Generation
 
@@ -33,13 +35,13 @@ Conditional independence across views given the class label is ensured by:
 
 This engineered conditional independence is highly beneficial for multi-view learning algorithms. It enables these algorithms to utilize information from different views separately, improving their accuracy and relia- bility in classification tasks. Please note that in the notebook we made two statistic exams for determine weather or not the dataset has conditionally independent two sets of variables (the two views) given the class labels, as required.
 
-<TODO:ADD FIG>
-
 ### Provided Dataset
 
 We also utilized the dataset provided by the class instructor, which has similar characteristics as the previous dataset. It comprises 1000 samples labeled with binary classes 0 or 1, and each view contains 5 features. Notably, the features are presumed to be conditionally independent given the class label.
 
-<TODO:ADD FIG>
+<p align="center">
+<img src="https://github.com/HadarPur/RU-AML-SemiSupervisedLearning/blob/main/figs/fig2.png" alt="drawing" width="800"/>
+</p>
 
 ### Data Pre-Processing
 
@@ -52,7 +54,7 @@ In this step, we divided the dataset into training, validation, and test sets wh
 Co-Training is a semi-supervised learning technique that leverages the information contained in multiple views of the data to improve classification performance, particularly in scenarios where labeled data is scarce.
 We implemented the Co-Training algorithm inspired by the article by Blum & Mitchell [1]. The implemen- tation follows the pseudo code outlined below:
 
-<TODO:ADD ALG>
+<img src="https://github.com/HadarPur/RU-AML-SemiSupervisedLearning/blob/main/figs/alg.png" alt="drawing" width="800"/>
 
 The Co-Training process involves several iterative steps, which are outlined below:
 1. **Initialization**: Two base classifiers, denoted as model1 and model2, are initialized using labeled data available initially.
@@ -74,17 +76,25 @@ The Co-Training process capitalizes on the diversity of information provided by 
 
 In order to train our co-training classifier on the generated dataset, we chose the Naive Bayes classifier (for both models) after experimenting with various classifiers because of its suitability for conditionally indepen- dent datasets. We used default parameters as provided in section 3. The results are presented below.
 
-<TODO:ADD FIG>
+<p align="center">
+<img src="https://github.com/HadarPur/RU-AML-SemiSupervisedLearning/blob/main/figs/table1.png" alt="drawing" width="800"/>
+</p>
 
-<TODO:ADD FIG>
+<p align="center">
+<img src="https://github.com/HadarPur/RU-AML-SemiSupervisedLearning/blob/main/figs/fig3.png" alt="drawing" width="800"/>
+</p>
 
 ### Training on Provided Dataset
 
 In order to train our co-training classifier on the provided dataset, we chose the Random Forest classifier as model1 and the SVM classifier as model2 after experimenting with various classifiers and achieving best results with this combination. We wanted to combine two different classifiers to observe how our co-training algorithm handles two distinct models, aiming to create a more robust model while hoping to achieve better classification results. We used default parameters as provided in section 3. The results are presented below.
 
-<TODO:ADD FIG>
+<p align="center">
+<img src="https://github.com/HadarPur/RU-AML-SemiSupervisedLearning/blob/main/figs/table2.png" alt="drawing" width="800"/>
+</p>
 
-<TODO:ADD FIG>
+<p align="center">
+<img src="https://github.com/HadarPur/RU-AML-SemiSupervisedLearning/blob/main/figs/fig4.png" alt="drawing" width="800"/>
+</p>
 
 ## Evaluation & Comparisons
 
@@ -92,24 +102,32 @@ In order to train our co-training classifier on the provided dataset, we chose t
 
 We assessed the performance of our co-training approach by removing 90% of the labels. We utilized Naive Bayes classifiers as our models. This was compared against the fully labeled dataset trained with the Naive Bayes classifier. Below are the results of this comparison.
 
-<TODO:ADD FIG>
+<p align="center">
+<img src="https://github.com/HadarPur/RU-AML-SemiSupervisedLearning/blob/main/figs/fig5.png" alt="drawing" width="800"/>
+</p>
 
 We observed that our model, even when trained with only 10% of the labels, achieved competitive results compared to models trained on fully labeled data. Specifically, our model attained an accuracy of 85% on the test data, whereas the fully labeled model achieved 89% accuracy.
 We also examined the decision boundaries of our co-training classifier on the test and train sets. We observe that the algorithm handles the data well despite the absence of 90% of the labels. It can still distinguish effectively between the different classes, which is impressive given that the features are conditionally inde- pendent given the labels.
 
-<TODO:ADD FIG>
+<p align="center">
+<img src="https://github.com/HadarPur/RU-AML-SemiSupervisedLearning/blob/main/figs/fig6.png" alt="drawing" width="800"/>
+</p>
 
 ### Provided Dataset
 
 We assessed the effectiveness of our co-training approach by removing 90% of the labels. We utilized Random Forest as our first model and SVM classifier as our second model. We compared this against models trained with the fully labeled dataset. The results of this comparison are outlined below.
 
-<TODO:ADD FIG>
+<p align="center">
+<img src="https://github.com/HadarPur/RU-AML-SemiSupervisedLearning/blob/main/figs/fig7.png" alt="drawing" width="800"/>
+</p>
 
 We observed that our model, even when trained with only 10% of the labels, achieved competitive results compared to models trained on fully labeled data. Specifically, our model attained an accuracy of 93% on the test data, whereas the fully labeled SVM achieved 92% accuracy and the fully labeled RF achieved 95% accuracy.
 
 In the provided dataset, similar to the generated dataset, we examined the decision boundaries created by our co-training algorithm. We observed well-defined contours of the different classes, indicating the effec- tiveness of the algorithm in classification. These results were particularly surprising considering that our co-training classifier combines two different models to create the decision boundaries.
 
-<TODO:ADD FIG>
+<p align="center">
+<img src="https://github.com/HadarPur/RU-AML-SemiSupervisedLearning/blob/main/figs/fig8.png" alt="drawing" width="800"/>
+</p>
 
 ## Visualization - Bonus
 
@@ -117,7 +135,9 @@ In this section, we created an animation to visualize how our Co-Training classi
 1. Update Function: We defined a function called update that updates the animation frame by frame. This function adjusts the decision boundaries of our classifier and plots them on two separate views of the data.
 2. Animation Creation: We used Matplotlib’s FuncAnimation class to create the animation. It iterates through different frames, with each frame representing a step in the Co-Training process. The update function is called for each frame to update the plot accordingly.
 
-<TODO:ADD GIF>
+<p align="center">
+<img src="https://github.com/HadarPur/RU-AML-SemiSupervisedLearning/blob/main/images/ani.gif" alt="drawing" width="800"/>
+</p>
 
 ## Summary
 
